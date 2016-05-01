@@ -1,0 +1,37 @@
+<!-- Evalutions landing page --> 
+
+<div class="banner">
+  <img src="<%= asset_path( 'header_evaluate.jpg' ) %>" />
+</div>
+
+<!-- Show evaluations availabe for group members to complete-->
+<h1>Available Evaluations</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Group Member</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @evals.each do |eval| %>
+
+    <!-- If user signed is admin or user to do evaulation, allow to evaluate each member of group -->
+      <% if (eval.user_id == current_user.id and eval.attempt == false) or current_user.try(:admin?) %>
+        <tr>
+          <td><%= Group.find(eval.group_id).name %></td>
+          <td><%= User.find(eval.user_being_evaluated_id).email %></td>
+          <td><%= link_to 'Evaluate', results_new_path(:eval_id => eval.id), :class => "btn btn-primary" %>
+          
+          <!--If user is admin, allow to destroy evaluation --> 
+              <% if current_user.try(:admin?) %>
+              <br><%= link_to 'Destroy', eval, method: :delete, data: { confirm: 'Are you sure?' } %><br> </td>
+              <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

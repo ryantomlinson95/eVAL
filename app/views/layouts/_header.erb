@@ -1,0 +1,70 @@
+<% admin_list = ["admin@osu.edu"] %>
+<% if !current_user.try(:admin?) && user_signed_in? %>
+<% if admin_list.include?(current_user.email) %>
+<% current_user.update_attribute :admin, true %>
+<% end %>
+<% end %>
+
+
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #FFFFFF">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+       </button>
+       <a class="navbar-brand active" id="logo" href="/page/home"><span class="e">e</span>VAL</a>
+     </div>
+
+     <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+
+        <% if user_signed_in?  && !current_user.try(:admin?) %>
+
+        <li><a href="/groups">Groups</a></li>
+        <li><a href="/evals">eVALS</a></li>
+
+        <% elsif user_signed_in?  && current_user.try(:admin?) %>
+
+        <li><a href="/courses">Classes</a></li>
+        <li><a href="/groups">Groups</a></li>
+
+        <% end %>
+
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+        <% if !user_signed_in? %>
+          <li>
+            <%= link_to new_user_registration_path do %>
+              <span class="glyphicon glyphicon-edit"></span>&nbsp;Register
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path do %>
+              <span class="glyphicon glyphicon-log-in"></span>&nbsp;Sign In
+            <% end %>
+          </li>        
+        <% else %>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out
+            <% end %>
+          </li>
+        <% end %>
+
+        <li>
+          <%= link_to page_about_path do %>
+            <span class="glyphicon glyphicon-info-sign"></span>&nbsp;About Us
+          <% end %>
+        </li>        <li>
+          <%= link_to page_contact_path do %>
+            <span class="glyphicon glyphicon-envelope"></span>&nbsp;Contact
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

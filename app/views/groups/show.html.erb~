@@ -1,0 +1,28 @@
+<div class="banner">
+  <img src="<%= asset_path( 'header_groups.jpg' ) %>" />
+</div>
+<% if current_user.try(:admin?) %>
+	<% @group.update_attribute :email, current_user.email %>
+<% end %>
+
+<h1><%= @group.name %></h1>
+
+<% if !current_user.try(:admin?) %>
+  	<h2><strong>Owner: </strong> <%= @group.email %></h2>
+<% end %>
+
+
+	<h2><strong>Members:</strong></h2>
+	<% if @group.membership_ids.length == 0 %>
+		<%= "There are currently no members in this group" %>
+	<% else %>
+		<% for i in 0...@group.membership_ids.length %>
+			<strong><%= User.find(Membership.find(@group.membership_ids[i]).user_id).email %></strong><br>
+		<% end %>
+	<% end %><br>
+
+<br>
+<% if current_user.try(:admin?) %>
+	<%= link_to 'Add Member', new_membership_path(:group_id => @group.id), :class => "btn btn-default" %>
+<% end %>
+<%= link_to 'Back', groups_path, :class => "btn btn-default" %>

@@ -1,0 +1,8 @@
+<!-- Show members detail page -->
+<!-- Notifies that user has been added to a group --> 
+<div class="banner">
+  <img src="<%= asset_path( 'header_groups.jpg' ) %>" />
+</div>
+<h3><strong><%= User.find(@membership.user_id).email %></strong> has been added to <strong><%= Group.find(@membership.group_id).name %></strong></h3><br>
+
+<%= link_to 'Back', groups_path, :class => "btn btn-default" %>

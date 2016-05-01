@@ -1,0 +1,45 @@
+<div class="banner">
+  <img src="<%= asset_path( 'header_about.jpg' ) %>" />
+</div>
+
+<div class="container-fluid">
+	<h1>Meet the Team</h1>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		
+		<div class="col-sm-3 row-eq-height about">
+			<img class="img-circle" src="<%= asset_path( 'ryan.jpg' ) %>" />
+			<h2>Ryan Tomlinson</h2>
+			<p>
+				Ryan is a junior at The Ohio State University. He is currently studying Computer Science and Engineering. His interests include fencing, playing the piano and going to football games.
+			</p>
+		</div>
+		
+		<div class="col-sm-3 row-eq-height about">
+			<img class="img-circle" src="<%= asset_path( 'default-avatar.png' ) %>" />
+			<h2>Ziming Gong</h2>
+			<p>
+				Fill...
+			</p>
+		</div>
+		
+		<div class="col-sm-3 row-eq-height about">
+			<img class="img-circle" src="<%= asset_path( 'default-avatar.png' ) %>" />
+			<h2>Crystal Ceballos</h2>
+			<p>
+				Fill...
+			</p>
+		</div>
+		
+		<div class="col-sm-3 row-eq-height about">
+			<img class="img-circle" src="<%= asset_path( 'tammy.jpg' ) %>" />
+			<h2>Tammy Joseph</h2>
+			<p>
+				Tammy is a junior at The Ohio State University. She is currently studying Computer Science and Engineering and has completed her minor in Criminology. Her interests include basketball, hiking, camping, fishing, snowboarding and taking care of her dog Sky and cat Leo. She is independently working on building a handheld device with her Raspberry Pi. 
+			</p>
+		</div>
+	
+	</div>
+</div>

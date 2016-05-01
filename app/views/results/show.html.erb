@@ -1,0 +1,19 @@
+<!-- Evaluation results listing page --> 
+
+<div class="banner">
+  <img src="<%= asset_path( 'header_evaluate.jpg' ) %>" />
+</div>
+<h1>Evaluation Submitted</h1>
+
+<h3><strong>Group:  </strong><%= Group.find(@result.group_id).name %></h2>
+
+<h3><strong>Group Member:  </strong><%= User.find(Eval.find(@result.eval_id).user_being_evaluated_id).email %></h2>
+
+<h3><strong>Score:  </strong><%= @result.score %></h2>
+
+<h3><strong>Comments:  </strong><%= @result.comments %></h2><br>
+
+<% Eval.find(@result.eval_id).update_attribute :attempt, true %>
+
+
+<%= link_to 'Back', evals_path, :class => "btn btn-default" %>

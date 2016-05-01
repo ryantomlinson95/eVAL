@@ -1,0 +1,40 @@
+<!-- Form for rendering results --> 
+
+<%= form_for(@result) do |f| %>
+  <% if @result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@result.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+      <ul>
+      <% @result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label "Eval ID" %><br>
+    <%= f.number_field :eval_id, :value => Eval.find(params[:eval_id]).id, :readonly => true %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id, :value => Eval.find(params[:eval_id]).user_id, :readonly => true %>
+  </div>
+  <div class="field">
+    <%= f.label :group_id %><br>
+    <%= f.number_field :group_id, :value => Eval.find(params[:eval_id]).group_id, :readonly => true %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br>
+    <%= f.select :score, (0..10) %>
+  </div>
+  <div class="field">
+    <%= f.label "Additional Comments" %><br>
+    <%= f.text_field :comments %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit Evaluation", :class => "btn btn-primary" %>
+    <%= link_to 'Back', evals_path, :class => "btn btn-default" %>
+  </div>
+
+<% end %>

@@ -1,0 +1,26 @@
+<!-- Form for rendering evalutions -->
+<%= form_for(@eval) do |f| %>
+  <% if @eval.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@eval.errors.count, "error") %> prohibited this eval from being saved:</h2>
+
+      <ul>
+      <% @eval.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :group_id %><br>
+    <%= f.number_field :group_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

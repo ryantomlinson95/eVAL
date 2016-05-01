@@ -1,0 +1,29 @@
+<!-- Evaluation creation page --> 
+
+<div class="banner">
+  <img src="<%= asset_path( 'header_evaluate.jpg' ) %>" />
+</div>
+<h1>Evaluations have been sent out</h1>
+
+<% @users = User.all.collect %>
+<% @members = [] %>
+
+<!-- Sends out evaluations to all members of a selected group --> 
+<% for i in 0...Group.find(params[:group_id]).membership_ids.length %>
+	<% @users.each do |user| %>
+		<% if user.membership_ids.include? Group.find(params[:group_id]).membership_ids[i] %>
+			<% @members.push user %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<% for i in 0...@members.length %>
+	<% for j in 0...@members.length %>
+		<% if i != j %>
+			<% @eval1 = Eval.new(:group_id => Group.find(params[:group_id]).id, :user_id => @members[i].id, :user_being_evaluated_id => @members[j].id, :attempt => false) %>
+			<% @eval1.save %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<%= link_to 'Ok!', groups_path, :class => "btn btn-default" %>

@@ -1,0 +1,37 @@
+<!-- Contact page for eVAL website administrator --> 
+
+<div class="banner">
+  <img src="<%= asset_path( 'header_contact.jpg' ) %>" />
+</div>
+
+<h1>Contact</h1>
+<h2>Send e-mail to support@eval.org:</h2>
+
+<script type="text/javascript">
+function clearDefault(a){if(a.defaultValue==a.value){a.value=""}};
+</script>
+
+<form action="MAILTO:tomlinson.124@osu.edu" method="post" enctype="text/plain">
+	Name:<br>
+	<input type="text" onFocus="clearDefault(this)" name="firstname" value="Your Name"><br><br>
+
+	<% if user_signed_in? %>
+	E-mail:<br>
+	<input type="text" onFocus="clearDefault(this)" name="mail" value="<%= current_user.email %>"><br><br>
+
+	<% else %>
+	E-mail:<br>
+	<input type="text" onFocus="clearDefault(this)" name="mail" value="Your Email"><br><br>
+
+	<% end %>
+
+	Comments:<br>
+	<input type="text" onFocus="clearDefault(this)" name="comment" value="Your Comments" size="50" style="height: 160px;"><br><br>
+
+	<input class="btn btn-primary" type="submit" value="Send">
+	<input class="btn btn-default" type="reset" value="Reset">
+</form>
+<div style="margin-bottom: 30px;"></div>
+
+</body>
+</html>

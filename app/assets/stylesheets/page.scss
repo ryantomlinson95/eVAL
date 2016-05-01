@@ -1,0 +1,251 @@
+// Place all the styles related to the page controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$bgDefault      : #ffffff;
+$bgHighlight    : #c0dfd9;
+$colDefault     : #3b3a36;
+$colHighlight   : #3b3a36;
+
+/* universal */
+
+.btn-danger, .btn-primary, .btn-warning {
+  color: white !important;
+  margin-bottom: 5px !important;
+
+}
+
+.btn-default {
+  color: black !important;
+  margin-bottom: 5px !important;
+}
+
+body {
+  padding-top: 50px;
+  text-align: center;
+  background-color: white;
+  font-family: 'Lato', serif !important;
+  font-size: 2em;
+  padding-bottom: 30px;
+}
+
+img {
+  max-width: 100% !important;
+  height: auto;
+  width: auto\9; /* ie8 */
+  margin-top: 0;
+  border-top: 0px;
+}
+
+nav {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+th {
+  text-align: center !important;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.img-circle {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-bottom: 20px;
+}
+
+.about {
+  background: linear-gradient(white, lightgray);
+  margin-bottom: 50px;
+  padding-top: 10px;
+  padding-bottom: 0;
+  border: 5px solid white;
+  //height: 100%;
+  height: calc(100vh - 125px);
+  &:hover {
+    transition: 250ms ease-in-out;
+    background-color: #8c8c8c;
+    h2 {
+      color: #990000;
+      transition: 500ms ease-in-out;
+    }
+  }
+
+  h2 {
+    font-size: 2.1em;
+    margin-top: 5px;
+  }
+}
+
+.alert {
+  //display: inline-block;
+  list-style: none;
+  white-space: normal !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+  color: black !important;
+}
+
+.field {
+  text-align: center !important;
+}
+
+/* home page columns */
+
+.simple, .functional, .connected, .elegant {
+  .btn, .btn-default {
+    text-align: center !important;
+  }
+  height: 100%;
+  background: linear-gradient(white, lightgray);
+  color: black;
+  border: 6px solid white;
+  height: calc(100vh - 325px);  
+  &:hover {
+    transition: 250ms ease-in-out;
+    background-color: #8c8c8c;
+    .btn, .btn-default {
+      background-color: #990000;
+      color: white;
+      border-color: #990000;
+      transition: 250ms ease-in-out;
+    }
+  }
+}
+
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* header */
+
+.navbar-right {
+  font-size: 1.1em !important;
+}
+
+$dropDown       : false;
+.navbar-default {
+  margin-bottom: 0;
+  border-bottom: 0px;
+  background-color: white !important;
+  .navbar-brand {
+    .active {
+      background-color: gray;
+    }
+    font-weight: 900;
+    font-size: 2.5em;
+    color: $colDefault;
+    &:hover, &:focus {
+      color: white;
+      background-color: gray;
+      transition: all 500ms ease-in-out; 
+      .e {
+        transition: all 250ms ease-in;
+        color: #990000;
+      }
+      }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}
+      @if $dropDown {
+        > .dropdown-menu {
+          background-color: $bgDefault;
+          > li {
+            > a {
+              color: $colDefault;
+              &:hover,  &:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight; }}
+            > .divider {
+              background-color: $bgHighlight;}}}}}
+    @if $dropDown {
+      .open .dropdown-menu > .active {
+        > a, > a:hover, > a:focus {
+          color: $colHighlight;
+          background-color: $bgHighlight; }}}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    transition: all 500ms ease;
+    background-color: gray;
+    color: white;
+}

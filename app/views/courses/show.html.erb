@@ -1,0 +1,26 @@
+<!-- Landing page for details of a class-->
+
+<div class="banner">
+  <img src="<%= asset_path( 'header_classes.jpg' ) %>" />
+</div>
+
+<!-- If user signed is admin, show course name, groups in class -->
+<% if current_user.try(:admin?) %>
+<% end %>
+<h1>Name:</h1>
+<h3>
+  <%= @course.name %>
+</h3>
+ 
+<h1>Groups:</br></h1>
+<% if @course.group_ids.length == 0 %>
+  <h3>There are currently no groups in this class</h3>
+ <% end %>
+
+<% for i in 0...@course.group_ids.length %>
+	<h3><%= Group.find(@course.group_ids[i]).name %></h3>
+<% end %>
+
+
+
+<br><%= link_to 'Back', courses_path, :class => "btn btn-default" %>

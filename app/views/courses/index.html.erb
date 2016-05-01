@@ -1,0 +1,49 @@
+<!-- Course landing page --> 
+
+<div class="banner">
+  <img src="<%= asset_path( 'header_classes.jpg' ) %>" />
+</div>
+
+<!-- Check that current user is admin to display Classes or Manage Classes -->
+<% if !current_user.try(:admin?) %>
+<h1>Classes</h1>
+<% else %>
+<h1>Manage Classes</h1>
+<% end %>
+
+<!-- Show all classes, groups and actions -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number of Groups</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  
+  <!-- If User signed in is owner of class, show classes and actions for each class: show groups, add groups, and delete class -->
+    <% if current_user.try(:admin?) %>
+      <% @courses.each do |course| %>
+      <tr><% if user_signed_in? and course.user_id == current_user.id%>
+              <td><%= course.name %></td>
+              <td><%= course.group_ids.length %></td>
+              <td><%= link_to 'Show', course, :class => "btn btn-default" %>
+		  <%= link_to 'Add Group', new_group_path(:course_id => course.id), :class => "btn btn-primary" %>
+                  <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+
+  </tbody>
+</table>
+
+<br>
+
+<!-- If user is admin, add action to add a class -->
+<% if current_user.try(:admin?) %>
+  <%= link_to 'New Class', new_course_path, :class => "btn btn-default" %>
+<% end %>

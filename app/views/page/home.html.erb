@@ -1,0 +1,64 @@
+<!-- Home page for eVAL --> 
+
+<div class="banner">
+  <img src="<%= asset_path( 'header_home.jpg' ) %>" />
+</div>
+
+<% if user_signed_in? and !current_user.try(:admin?) %>
+	<% current_user.update_attribute :admin, false %>
+<% end %>
+
+<!-- If a user is not signed in, show options for new account, Sign in, About and Contact --> 
+<% if !user_signed_in? %>
+	
+	<h1>Peer Evaluations Made Easy</h1>
+
+	<div class="container-fluid why">
+  		<div class="row">
+  			<div class="col-sm-3 functional">
+          <h1>Functional</h1>
+          <ul>
+            <li><strong>eVAL</strong> just works, no questions asked.</li><br><br>
+            <li><%= link_to "See the code", "https://github.com/cse3901-osu2016sp-1730/eVal", :class => "btn btn-default text-center" %><li>
+          </ul>
+  			</div>
+
+    		<div class="col-sm-3 simple">
+    			<h1>Simple</h1>
+    			<ul>
+    				<li><strong>eVAL</strong> is designed to make sense the first time.</li><br><br>
+    				<li><%= link_to "Register Now", new_user_registration_path, :class => "btn btn-default text-center" %><li>
+    			</ul>
+    		</div>
+
+    		<div class="col-sm-3 connected">
+          <h1>Connected</h1>
+          <ul>
+            <li>Receive and send evaluations to your teachers and peers</li><br><br>
+            <li><%= link_to "Request Teacher Status", page_contact_path, :class => "btn btn-default text-center" %><li>
+          </ul>
+  			</div>
+
+    		<div class="col-sm-3 elegant">
+    			<h1>Elegant</h1>
+    			<ul>
+    				<li>Simply put: we care how things look.</li>
+    				<li>Learn about the <strong>eVAL</strong> team:</li><br>
+    				<li><%= link_to "About", page_about_path, :class => "btn btn-default" %><li>
+    			</ul>
+    		</div>
+  		</div>
+	</div>
+<% end %>
+
+<!--If user is signed in and admin, Show Classes option --> 
+<% if user_signed_in? and current_user.try(:admin?) %>
+	<h1>Welcome to eVAL</h1>
+	<h2>To get started, visit the Classes tab!</h2>
+<% end %>
+
+<!-- IF user is signed in and not an admin, show Groups option --> 
+<% if user_signed_in? and !current_user.try(:admin?) %>
+	<h1>Welcome to eVAL</h1>
+	<h2>Go to the Groups tab to see if you've been added to any groups!</h2>
+<% end %>

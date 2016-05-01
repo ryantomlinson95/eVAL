@@ -1,0 +1,26 @@
+<!-- Form for rendering Memberships --> 
+
+<%= form_for(@membership) do |f| %>
+  <% if @membership.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@membership.errors.count, "error") %> prohibited this membership from being saved:</h2>
+      <ul>
+      <% @membership.errors.full_messages.each do |message| %>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.select :user_id, User.where(:admin => false).collect {|p| [ p.email, p.id ] } %>
+  </div>
+  <div class="field">
+    <%= f.label "Group ID" %><br>
+    <%= f.number_field :group_id, :value => Group.find(params[:group_id]).id, :readonly => true %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add Member", :class => "btn btn-primary" %>
+    <%= link_to 'Back', groups_path, :class => "btn btn-default" %>
+  </div>
+<% end %>

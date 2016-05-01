@@ -1,0 +1,25 @@
+<!-- Create a new class page -->
+<!-- Form for creating a class, text field for class name and create class button -->
+<%= form_for(@course) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+	<%= f.hidden_field :user_id, :value => current_user.id  %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Create Class", :class => "btn btn-default" %>
+  </div>
+<% end %>

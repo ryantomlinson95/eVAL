@@ -1,0 +1,38 @@
+<!-- Results home page --> 
+
+<div class="banner">
+  <img src="<%= asset_path( 'header_evaluate.jpg' ) %>" />
+</div>
+<h1>Evaluations</h1>
+
+<!-- Shows evaluation results of group members to instructor --> 
+<table class = 'table'>
+  <thead>
+    <tr>
+      <th>Evaluater</th>
+      <th>Evaluated</th>
+      <th>Group</th>
+      <th>Score</th>
+      <th>Comments</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+<!-- Print all evaluation results --> 
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+      <% if result.group_id == Group.find(params[:group_id]).id %>
+        <td><%= User.find(result.user_id).email %></td>
+        <td><%= User.find(Eval.find(result.eval_id).user_being_evaluated_id).email %></td>
+        <td><%= Group.find(result.group_id).name %></td>
+        <td><%= result.score %></td>
+        <td><%= result.comments %></td>
+        <td><%= result.created_at.strftime("%m-%d-%Y") %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Back', groups_path, :class => "btn btn-default" %>
